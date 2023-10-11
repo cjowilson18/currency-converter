@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { json, checkStatus } from './utils';
+import './index.css';
 
 class ExactExchanges extends React.Component {
     constructor(props) {
@@ -76,7 +77,7 @@ class ExactExchanges extends React.Component {
         const { rate, currency1, currency2 } = this.state;
 
         return (
-            <div className="container">
+            <div className="container center-content border m-3">
                 <div className="text-center p-3 mb-2">
                     <h2 className="mb-2">Currency Converter</h2>
                     <h4>{this.state.selectValue1} 1 : {rate} {this.state.selectValue2}</h4>
@@ -169,11 +170,13 @@ class ExactExchanges extends React.Component {
 
                             </div>
                         </form>
-                        <span className="mr-1">{this.state.selectValue1}</span>
-                        <input value={currency1} onChange={this.handleCurrency1Change} type="number" />
-                        <span className="mx-3">=</span>
-                        <input value={currency2} onChange={this.handleCurrency2Change} type="number" />
-                        <span className="ml-1">{this.state.selectValue2}</span>
+                        <div className='mb-3'>
+                            <span className="mr-1">{this.state.selectValue1}</span>
+                            <input value={currency1} onChange={this.handleCurrency1Change} type="number" />
+                            <span className="mx-3">=</span>
+                            <input value={currency2} onChange={this.handleCurrency2Change} type="number" />
+                            <span className="ml-1">{this.state.selectValue2}</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,20 +3,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import Home from './Home';
 import ExactExchanges from './ExactExchanges';
+import './index.js';
+import Contact from './ContactMe';
 
-
-
-const Contact = () => {
-  return (
-    <Router>
-      <h2>Contact Me</h2>
-      <p>Email: cjowilson18@gmail.com</p>
-      <h3>More Information:</h3>
-      <a href='https://www.linkedin.com/in/claire-cj-wilson-3a4600190/'>Linked In</a>
-    </Router>
-    
-  )
-}
 const App = () => {
   return (
     <Router>
@@ -31,10 +20,11 @@ const App = () => {
   </div>
 </nav>
 <div className='footer'>
-  <a href='https://www.linkedin.com/in/claire-cj-wilson-3a4600190/'>Linked In</a>&nbsp;
-  <a href='https://github.com/cjowilson18'>GitHub</a>&nbsp;
-  <a href='https://www.altcademy.com/'>Guidance from Altcademy</a>&nbsp;
+  <a className='footerA' href='https://www.linkedin.com/in/claire-cj-wilson-3a4600190/'>Linked In</a>&nbsp;
+  <a className='footerA' href='https://github.com/cjowilson18'>GitHub</a>&nbsp;
+  <a className='footerA' href='https://www.altcademy.com/'>Guidance from Altcademy</a>&nbsp;
 </div>
+
 
         <Route path="/" exact component={Home} />
         <Route path="/exactExchanges/" component={ExactExchanges} />

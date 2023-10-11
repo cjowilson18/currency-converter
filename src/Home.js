@@ -61,7 +61,7 @@ event.preventDefault();
     
 
     return (
-      <div className="container">
+      <div className="container border mt-4">
          <div className="row">
             <h1>RATES EXCHANGE TABLE</h1>
             <div className='col-12'>
