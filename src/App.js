@@ -4,7 +4,7 @@ import './App.css';
 import Home from './Home';
 import ExactExchanges from './ExactExchanges';
 import './index.js';
-import Contact from './ContactMe';
+
 
 const App = () => {
   return (
@@ -15,7 +15,6 @@ const App = () => {
     <div className="navbar-nav">
       <Link className="nav-item nav-link active" to="/"> Home </Link>
       <Link className="nav-item nav-link" to="/exactExchanges/"> Exact Exchanges </Link>
-      <Link className="nav-item nav-link" to="/contact/"> My Information </Link>
     </div>
   </div>
 </nav>
@@ -28,7 +27,7 @@ const App = () => {
 
         <Route path="/" exact component={Home} />
         <Route path="/exactExchanges/" component={ExactExchanges} />
-        <Route path="/contact/" component={Contact} />
+        
     </Router>
   );
 }

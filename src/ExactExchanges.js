@@ -21,6 +21,7 @@ class ExactExchanges extends React.Component {
 
     handleChange1(event) {
         this.setState({ selectValue1: event.target.value });
+        this.handleCurrency1Change(event);
     }
 
     handleChange2(event) {
@@ -77,14 +78,14 @@ class ExactExchanges extends React.Component {
         const { rate, currency1, currency2 } = this.state;
 
         return (
-            <div className="container center-content border m-3">
+            <div className="container border m-3">
                 <div className="text-center p-3 mb-2">
                     <h2 className="mb-2">Currency Converter</h2>
                     <h4>{this.state.selectValue1} 1 : {rate} {this.state.selectValue2}</h4>
                 </div>
                 <div className="row text-center">
                     <div className="col-12">
-                        <form className='form-inline my-4' align='center'>
+                        <form className='form-inline my-4'>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <label className="input-group-text">Base Currency</label>
