@@ -64,7 +64,7 @@ event.preventDefault();
       <div className="container border mt-4">
          <div className="row">
             <h1>RATES EXCHANGE TABLE</h1>
-            <div className='col-12'>
+            <div className='col-auto'>
                 <form onSubmit={this.handleSubmit} className='form-inline my-4'>
                    <div className="input-group mb-3">
                 <div className="input-group-prepend">

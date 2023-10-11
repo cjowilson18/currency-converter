@@ -78,13 +78,13 @@ class ExactExchanges extends React.Component {
         const { rate, currency1, currency2 } = this.state;
 
         return (
-            <div className="container border m-3">
+            <div className="container border mt-5">
                 <div className="text-center p-3 mb-2">
                     <h2 className="mb-2">Currency Converter</h2>
                     <h4>{this.state.selectValue1} 1 : {rate} {this.state.selectValue2}</h4>
                 </div>
-                <div className="row text-center">
-                    <div className="col-12">
+                <div className="row justify-content-center">
+                    <div className="col-auto">
                         <form className='form-inline my-4'>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">

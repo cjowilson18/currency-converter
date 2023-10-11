@@ -9,12 +9,12 @@ import './index.js';
 const App = () => {
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand navbar-light bg-light">
   <a className="navbar-brand" href="#">Currency Exchange</a>
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
       <Link className="nav-item nav-link active" to="/"> Home </Link>
-      <Link className="nav-item nav-link" to="/exactExchanges/"> Exact Exchanges </Link>
+      <Link className="nav-item nav-link active" to="/exactExchanges/"> Exact Exchanges </Link>
     </div>
   </div>
 </nav>
