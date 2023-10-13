@@ -20,12 +20,16 @@ class ExactExchanges extends React.Component {
     }
 
     handleChange1(event) {
-        this.setState({ selectValue1: event.target.value });
-        this.handleCurrency1Change(event);
+        this.setState({ selectValue1: event.target.value }, () => {
+           this.handleCurrency1Change(event); 
+        });
+        
     }
 
     handleChange2(event) {
-        this.setState({ selectValue2: event.target.value });
+        this.setState({ selectValue2: event.target.value }, () => {
+            this.handleCurrency1Change(event);
+        });
     }
 
     toCurrency1(amount, rate) {
