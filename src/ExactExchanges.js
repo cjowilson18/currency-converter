@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { json, checkStatus } from './utils';
 import './index.css';
+import Chart from 'chart.js';
 
 class ExactExchanges extends React.Component {
     constructor(props) {
@@ -13,19 +14,70 @@ class ExactExchanges extends React.Component {
             currency1: 1,
             currency2: 1 * 0.94,
         };
+        this.chartRef= React.createRef();
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleCurrency1Change = this.handleCurrency1Change.bind(this);
         this.handleCurrency2Change = this.handleCurrency2Change.bind(this);
     }
 
+    getHistoricalRates = (selectValue1, selectValue2) => {
+        console.log(selectValue1 + " " + selectValue2);
+        const endDate = new Date().toISOString().split('T')[0];
+        const startDate = new Date((new Date).getTime() - (30 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+        fetch(`https://api.frankfurter.app/${startDate}..${endDate}?from=${selectValue1}&to=${selectValue2}`)
+          .then(checkStatus)
+          .then(json)
+          .then(data => {
+            if (data.error) {
+              throw new Error(data.error);
+            }
+            const chartLabels = Object.keys(data.rates);
+            const chartData = Object.values(data.rates).map(rate => rate[selectValue2]);
+            const chartLabel = `${selectValue1}/${selectValue2}`;
+            this.buildChart(chartLabels, chartData, chartLabel);
+          })
+          .catch(error => console.error(error.message));
+          
+      }
+      buildChart = (labels, data, label) => {
+        const chartRef = this.chartRef.current.getContext("2d");
+        if (typeof this.chart !== "undefined") {
+          this.chart.destroy();
+        }
+        this.chart = new Chart(this.chartRef.current.getContext("2d"), {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [
+              {
+                label: label,
+                data,
+                fill: false,
+                tension: 0,
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+          }
+        })
+      }
+
+
     handleChange1(event) {
-        this.setState({ selectValue1: event.target.value });
-        this.handleCurrency1Change(event);
+        this.setState({ selectValue1: event.target.value }, () => {
+           this.handleCurrency1Change(event); 
+           this.getHistoricalRates(event.target.value, this.state.selectValue2);
+        });
+        
     }
 
     handleChange2(event) {
-        this.setState({ selectValue2: event.target.value });
+        this.setState({ selectValue2: event.target.value }, () => {
+            this.handleCurrency1Change(event);
+            this.getHistoricalRates(this.state.selectValue1, event.target.value)
+        });
     }
 
     toCurrency1(amount, rate) {
@@ -37,7 +89,6 @@ class ExactExchanges extends React.Component {
     }
 
     convert(amount, rate, equation) {
-        console.log(typeof amount);
         const input = parseFloat(amount);
         if (Number.isNaN(input)) {
             return '';
@@ -55,7 +106,6 @@ class ExactExchanges extends React.Component {
           } 
           const rate=data.rates[this.state.selectValue2];
         this.setState({rate});
-        console.log(data.rates);
     })
 
 
@@ -178,6 +228,7 @@ class ExactExchanges extends React.Component {
                             <input value={currency2} onChange={this.handleCurrency2Change} type="number" />
                             <span className="ml-1">{this.state.selectValue2}</span>
                         </div>
+                        <canvas ref={this.chartRef} />
                     </div>
                 </div>
             </div>
