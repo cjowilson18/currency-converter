@@ -126,6 +126,7 @@ class ExactExchanges extends React.Component {
 
     render() {
         const { rate, currency1, currency2 } = this.state;
+        this.getHistoricalRates('USD', 'EUR');
 
         return (
             <div className="container border mt-5">
