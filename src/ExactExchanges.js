@@ -20,7 +20,9 @@ class ExactExchanges extends React.Component {
         this.handleCurrency1Change = this.handleCurrency1Change.bind(this);
         this.handleCurrency2Change = this.handleCurrency2Change.bind(this);
     }
-
+    componentDidMount() {
+        this.getHistoricalRates('USD', 'EUR');
+    }
     getHistoricalRates = (selectValue1, selectValue2) => {
         console.log(selectValue1 + " " + selectValue2);
         const endDate = new Date().toISOString().split('T')[0];
